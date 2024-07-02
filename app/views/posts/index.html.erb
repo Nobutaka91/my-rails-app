@@ -1,6 +1,7 @@
 <h1>Posts</h1>
+
 <ul>
-  <li><%= link_to "Post 1", post_path(1) %></li>
-  <li><%= link_to "Post 2", post_path(2) %></li>
-  <li><%= link_to "Post 3", post_path(3) %></li>
+  <% @posts.each do |post| %>
+  <li><%= link_to post.title, post_path(post) %></li>
+  <% end %>
 </ul>
