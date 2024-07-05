@@ -26,3 +26,23 @@
  .back-link {
   text-align: right;
  }
+
+
+ h1 a {
+  font-size: 16px;
+  font-weight: normal;
+ }
+
+ form div + div { /* form のdivとdivの間にcssを当てる */
+  margin-top: 8px;
+ }
+
+ input[type="text"], textarea { /* inputエリアにcssを当てる */
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+ }
+
+ .delete-form {
+  display: inline;
+ }
