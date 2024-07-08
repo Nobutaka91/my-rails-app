@@ -1,4 +1,40 @@
 <h1><%= @post.title %></h1>
 <%= simple_format(@post.body) %> 
 
+<% if @post.comments.any? %> <%# コメントが0個の場合はコメント一覧を表示しない %>
+<h2>Comments</h2>
+<ul>
+  <% @post.comments.each do |comment| %>
+    <% if comment.persisted? %>
+    <li>
+      <%= comment.body %>
+      <%= button_to "Delete",
+        post_comment_path(post_id: @post.id, id: comment.id),
+        method: :delete,
+        form: { class: "delete-form" }
+        data: { turbo_confirm: "Sure?"}
+      %>
+    </li>
+    <% end %>
+  <% end %>
+</ul>
+<% end %>
+
+<h2>Add a comment</h2>
+<%= form_with model: [@post, @comment] do |form| %>
+<div>
+  <%= form.text_field :body %>
+  <% if @comment.errors.any? %>
+  <ul>
+    <%= @comment.errors.full_messages_for(:body).each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+  <% end %>
+</div>
+<div>
+  <%= form.submit %>
+</div>
+<% end %>
+
 <p class="back-link"><%= link_to "Back", root_path %></p>

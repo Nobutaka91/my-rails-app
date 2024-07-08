@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  # get "/posts/:id", to: "p  osts#show", as: "post" # post_path(:id) 
-
   root "posts#index"
   
-  resources :posts
+  resources :posts do
+    resources :comments, only: [:create, :destroy] # ポストとコメントを紐づけるルーティングの設定
+  end
 
 end
