@@ -5,6 +5,7 @@ class PostsController < ApplicationController
 
   def show # 個々の投稿を表示するためのアクション
     @post = Post.find(params[:id])
+    @comment = @post.comments.build
   end
 
   def new 
